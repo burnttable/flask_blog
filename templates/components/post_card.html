@@ -1,0 +1,22 @@
+<div class="post-card">
+    <h2 class="post-title">
+        <a href="{{ url_for('posts.view', id=post.id) }}">{{ post.title }}</a>
+    </h2>
+    <div class="post-meta">
+        <span class="post-author">By {{ post.author.username }}</span>
+        <span class="post-date">{{ post.created_at.strftime('%B %d, %Y') }}</span>
+        {% if post.published %}
+            <span class="post-status published">Published</span>
+        {% else %}
+            <span class="post-status draft">Draft</span>
+        {% endif %}
+    </div>
+    <div class="post-summary">
+        {{ post.summary }}
+    </div>
+    <div class="post-stats">
+        <span class="post-likes">{{ post.get_like_count() }} likes</span>
+        <span class="post-comments">{{ post.get_comment_count() }} comments</span>
+        <span class="post-views">{{ post.view_count }} views</span>
+    </div>
+</div>

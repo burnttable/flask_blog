@@ -1,0 +1,74 @@
+html[data-theme="light"] {
+    --background-color: #ffffff;
+    --text-color: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --nav-background: #ffffff;
+    --card-background: #ffffff;
+    --input-background: #ffffff;
+    --link-color: #3b82f6;
+    --link-hover: #2563eb;
+}
+
+html[data-theme="light"] body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .header {
+    background-color: var(--nav-background);
+}
+
+html[data-theme="light"] .navbar-brand {
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .nav-link {
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .nav-link:hover {
+    background-color: #f3f4f6;
+}
+
+html[data-theme="light"] .theme-toggle {
+    background-color: #f3f4f6;
+}
+
+html[data-theme="light"] .post-card {
+    background-color: var(--card-background);
+}
+
+html[data-theme="light"] .post-title a {
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .post-title a:hover {
+    color: var(--link-color);
+}
+
+html[data-theme="light"] .form-control {
+    background-color: var(--input-background);
+    color: var(--text-color);
+}
+
+html[data-theme="light"] .auth-box {
+    background-color: var(--card-background);
+}
+
+html[data-theme="light"] a {
+    color: var(--link-color);
+}
+
+html[data-theme="light"] a:hover {
+    color: var(--link-hover);
+}
+
+html[data-theme="light"] .comment {
+    background-color: var(--card-background);
+}
+
+html[data-theme="light"] .search-input {
+    background-color: var(--input-background);
+    color: var(--text-color);
+}

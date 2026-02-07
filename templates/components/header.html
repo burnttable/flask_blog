@@ -1,0 +1,26 @@
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="{{ url_for('main.index') }}" class="navbar-brand">Flask Blog</a>
+
+            <div class="navbar-menu">
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('posts.create') }}" class="nav-link">New Post</a>
+                    <a href="{{ url_for('posts.my_posts') }}" class="nav-link">My Posts</a>
+                {% endif %}
+            </div>
+
+            <div class="navbar-actions">
+                {% include 'components/theme_toggle.html' %}
+
+                {% if session.get('user_id') %}
+                    <span class="navbar-user">{{ session.username }}</span>
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-secondary btn-sm">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary btn-sm">Login</a>
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-sm">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+</header>

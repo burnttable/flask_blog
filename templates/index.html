@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Flask Blog{% endblock %}
+
+{% block content %}
+<div class="search-bar">
+    <form action="{{ url_for('main.index') }}" method="POST" class="search-form">
+        <input type="text" name="query" placeholder="Search posts..." class="search-input" required>
+        <button type="submit" class="btn btn-search">Search</button>
+    </form>
+</div>
+
+<div class="posts-container">
+    {% if posts.items %}
+        {% for post in posts.items %}
+            {% include 'components/post_card.html' %}
+        {% endfor %}
+
+        <div class="pagination">
+            {% if posts.has_prev %}
+                <a href="{{ url_for('main.index', page=posts.prev_num) }}" class="btn btn-secondary">&laquo; Previous</a>
+            {% endif %}
+
+            <span class="pagination-info">
+                Page {{ posts.page }} of {{ posts.pages }}
+            </span>
+
+            {% if posts.has_next %}
+                <a href="{{ url_for('main.index', page=posts.next_num) }}" class="btn btn-secondary">Next &raquo;</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>No posts yet. {% if session.get('user_id') %}<a href="{{ url_for('posts.create') }}" class="btn btn-primary">Create your first post</a>{% endif %}</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+{% endblock %}

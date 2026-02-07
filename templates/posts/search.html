@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Flask Blog{% endblock %}
+
+{% block content %}
+<div class="search-results">
+    <h1>Search Results</h1>
+    <div class="search-bar">
+        <form action="{{ url_for('main.index') }}" method="POST" class="search-form">
+            <input type="text" name="query" placeholder="Search posts..." class="search-input" required>
+            <button type="submit" class="btn btn-search">Search</button>
+        </form>
+    </div>
+    <div id="search-results" class="posts-container"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+{% endblock %}
