@@ -34,6 +34,15 @@ run.bat
 
 4. Open your browser and navigate to `http://localhost:5000`
 
+### Quick Setup Verification
+
+After following the steps above, you should see:
+- Flask starting up on `http://127.0.0.1:5000`
+- "Running on all addresses (0.0.0.0)" message
+- No database errors (tables are auto-created on first run)
+
+If you see any errors, check the **Troubleshooting** section below.
+
 ### Linux/macOS
 
 1. Create a virtual environment:
@@ -59,14 +68,24 @@ chmod +x run.sh
 
 ## Configuration
 
-The application uses environment variables defined in `.env`:
+1. **Copy the example environment file:**
+   ```bash
+   # Windows
+   copy .env.example .env
 
-- `SECRET_KEY`: Secret key for session management (change in production!)
-- `DATABASE_URL`: SQLite database path (default: `sqlite:///C:/Users/Oit-student/flask_blog/blog.db`)
+   # Linux/Mac
+   cp .env.example .env
+   ```
 
-**Important**: Update `DATABASE_URL` in `.env` to match your system's path. The format should be:
-- Windows: `sqlite:///C:/path/to/project/blog.db`
-- Linux/Mac: `sqlite:////path/to/project/blog.db`
+2. **Environment variables in `.env`:**
+   - `SECRET_KEY`: Secret key for session management (change in production!)
+   - `DATABASE_URL`: Optional - SQLite database path. If not set, the app will use the system temp directory (portable default).
+
+3. **Database Location Options:**
+   - **Default (Recommended)**: Leave `DATABASE_URL` commented out. The app will use the temp directory automatically.
+   - **Custom Location**: Uncomment `DATABASE_URL` and set an absolute path:
+     - Windows: `sqlite:///C:/path/to/project/blog.db`
+     - Linux/Mac: `sqlite:////home/username/project/blog.db` (4 slashes for absolute paths)
 
 ## Database Setup
 
@@ -79,7 +98,8 @@ flask_blog/
 ├── app.py                  # Main Flask application
 ├── config.py               # App configuration
 ├── requirements.txt        # Dependencies
-├── .env                    # Environment variables (configure DATABASE_URL here)
+├── .env                    # Environment variables (not in git)
+├── .env.example           # Example environment file
 ├── .gitignore             # Git ignore file
 ├── run.bat                # Windows startup script
 ├── run.sh                 # Unix/Linux/Mac startup script
@@ -168,8 +188,9 @@ flask_blog/
 ### Deploy to Render.com (Recommended)
 
 1. **Prepare for deployment:**
+   - Copy `.env.example` to `.env` if needed
    - Ensure `.env` file has a strong `SECRET_KEY`
-   - Update `DATABASE_URL` for production (Render will set this automatically)
+   - For Render/Heroku, the platform will set `DATABASE_URL` automatically
 
 2. **Push to GitHub:**
 ```bash
@@ -225,10 +246,11 @@ The application can also be deployed to:
 
 If you get "unable to open database file" error:
 
-1. Update `DATABASE_URL` in `.env` with absolute path
-2. Windows: `sqlite:///C:/Users/YourName/flask_blog/blog.db`
-3. Linux/Mac: `sqlite:////home/username/flask_blog/blog.db` (4 slashes)
-4. Ensure the directory has write permissions
+1. **Easiest fix**: Comment out or remove `DATABASE_URL` from `.env` - the app will use the temp directory
+2. **Custom path**: Set `DATABASE_URL` in `.env` with absolute path:
+   - Windows: `sqlite:///C:/Users/YourName/flask_blog/blog.db`
+   - Linux/Mac: `sqlite:////home/username/flask_blog/blog.db` (4 slashes)
+3. Ensure the directory has write permissions
 
 ### Port Already in Use
 
